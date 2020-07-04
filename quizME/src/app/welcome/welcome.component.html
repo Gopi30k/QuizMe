@@ -1,0 +1,45 @@
+<form
+  [formGroup]="quizForm"
+  (ngSubmit)="onSubmit(quizForm.value)"
+  class="container"
+>
+  <div class="ui-fluid p-formgrid p-grid p-dir-col">
+    <div class="p-field p-col-12">
+      <label for="Username">Username</label>
+      <input
+        id="Username"
+        type="text"
+        name="Username"
+        autocomplete="off"
+        formControlName="userName"
+        pInputText
+      />
+    </div>
+    <div class="p-field p-col-12">
+      <label for="state">Category</label>
+      <p-dropdown
+        inputId="state"
+        [options]="quizCategory"
+        placeholder="Select"
+        optionLabel="name"
+        [showClear]="true"
+        formControlName="category"
+      ></p-dropdown>
+    </div>
+    <div class="p-field p-col-12">
+      <label for="difficulty">Difficulty</label>
+      <p-selectButton
+        [options]="quizDifficilty"
+        formControlName="difficulty"
+      ></p-selectButton>
+    </div>
+    <div class="p-offset-4">
+      <p-button
+        label="Start Quiz"
+        type="submit"
+        [disabled]="!quizForm.valid"
+        styleClass="ui-button-info"
+      ></p-button>
+    </div>
+  </div>
+</form>
