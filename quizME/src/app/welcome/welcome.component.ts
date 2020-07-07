@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Time } from "@angular/common";
+import { Router } from "@angular/router";
 import {
   Validators,
   FormControl,
@@ -20,8 +21,12 @@ export class WelcomeComponent implements OnInit {
   selectedCategory: category;
   quizDifficilty: difficulty[];
   selectedDifficulty: difficulty;
-  quizQueries: quiz[];
-  constructor(private fb: FormBuilder, private quizService: QuizService) {
+
+  constructor(
+    private fb: FormBuilder,
+    private quizService: QuizService,
+    private router: Router
+  ) {
     this.quizCategory = [
       { name: "Movies", code: 11 },
       { name: "Technology", code: 18 },
@@ -55,15 +60,7 @@ export class WelcomeComponent implements OnInit {
   }
 
   onSubmit(value: string) {
-    this.quizService
-      .getQuizQuestions(value)
-      .subscribe((quizApiData: quizResponse) => {
-        this.quizQueries = quizApiData.results.map((data) => {
-          return {
-            question: data.question,
-            options: data.incorrect_answers,
-          };
-        });
-      });
+    sessionStorage.setItem("userSelection", JSON.stringify(value));
+    this.router.navigate(["/question"]);
   }
 }

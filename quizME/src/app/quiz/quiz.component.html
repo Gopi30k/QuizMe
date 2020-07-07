@@ -1,0 +1,32 @@
+<!-- <p-paginator [rows]="1" [totalRecords]="quizQueries.length"> </p-paginator> -->
+
+<p-fieldset legend="Question-{{ questionId + 1 }}">
+  <div class="p-grid" style="margin-bottom: 10px;">
+    <p>{{ quizQueries[questionId].question }}</p>
+    <div class="p-col-12">
+      <p-radioButton
+        name="group1"
+        value="Option 1"
+        label="Option 1"
+        [(ngModel)]="val1"
+        inputId="opt1"
+      ></p-radioButton>
+    </div>
+  </div>
+</p-fieldset>
+
+<p-button
+  label="Prev"
+  icon="pi pi-chevron-left"
+  iconPos="left"
+  (click)="prevQuestion()"
+></p-button>
+
+<p-button
+  label="Next"
+  icon="pi pi-chevron-right"
+  iconPos="right"
+  (click)="nextQuestion()"
+></p-button>
+<!--
+{{ quizQueries | json }} -->

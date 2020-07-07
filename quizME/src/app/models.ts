@@ -13,6 +13,11 @@ export interface quiz {
   options: string[] | number[];
 }
 
+export interface QuizResolved {
+  Quiz: quiz[];
+  error?: any;
+}
+
 export interface quizResponse {
   response_code: number;
   results: Result[];

@@ -5,7 +5,7 @@ import {
   HttpErrorResponse,
 } from "@angular/common/http";
 import { Observable, throwError } from "rxjs";
-import { catchError, retry, tap } from "rxjs/operators";
+import { catchError, retry, tap, map } from "rxjs/operators";
 import { difficulty, category, quiz, quizResponse, Result } from "./models";
 
 @Injectable({
@@ -30,7 +30,13 @@ export class QuizService {
     return throwError("Something bad happened; please try again later.");
   }
 
+  /**
+   *
+   * @param optionsSelected Object of user selected values to be passed as query params to api
+   */
   getQuizQuestions(optionsSelected) {
+
+    //constructing query params object to pass to HttpParams
     let queryParams = {
       category: optionsSelected.category.code,
       difficulty: optionsSelected.difficulty,
@@ -41,10 +47,19 @@ export class QuizService {
       })(),
     };
     let httpParam = new HttpParams({ fromObject: queryParams });
+
+    //modify the api response as quiz(interface) strcutured array and return
     return this.http
       .get<quizResponse>(this._url, { params: httpParam })
       .pipe(
-        // tap((data) => console.log(data)),
+        map((apiData: quizResponse) => {
+          return apiData.results.map((data) => {
+            return {
+              question: data.question,
+              options: data.incorrect_answers,
+            };
+          });
+        }),
         catchError(this.handleError)
       );
   }

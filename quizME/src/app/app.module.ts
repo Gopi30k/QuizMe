@@ -6,9 +6,10 @@ import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { WelcomeComponent } from "./welcome/welcome.component";
 import { PrimengModule } from "./primeNG/primeng.module";
+import { QuizComponent } from "./quiz/quiz.component";
 
 @NgModule({
-  declarations: [AppComponent, WelcomeComponent],
+  declarations: [AppComponent, WelcomeComponent, QuizComponent],
   imports: [BrowserModule, AppRoutingModule, PrimengModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],
