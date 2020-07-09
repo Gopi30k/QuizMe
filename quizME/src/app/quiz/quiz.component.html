@@ -1,14 +1,14 @@
 <!-- <p-paginator [rows]="1" [totalRecords]="quizQueries.length"> </p-paginator> -->
 
-<p-fieldset legend="Question-{{ questionId + 1 }}">
+<p-fieldset legend="Question-{{ questionNo + 1 }}">
   <div class="p-grid" style="margin-bottom: 10px;">
-    <p>{{ quizQueries[questionId].question }}</p>
-    <div class="p-col-12">
+    <p>{{ quizQueries[questionNo].question | sanitizeHtml }}</p>
+    <div class="p-col-12" *ngFor="let opt of quizQueries[questionNo].options">
       <p-radioButton
-        name="group1"
-        value="Option 1"
-        label="Option 1"
-        [(ngModel)]="val1"
+        name="answers"
+        [value]="opt | sanitizeHtml"
+        [label]="opt | sanitizeHtml"
+        [(ngModel)]="quizQueries[questionNo].selectedAnswer"
         inputId="opt1"
       ></p-radioButton>
     </div>
@@ -28,5 +28,9 @@
   iconPos="right"
   (click)="nextQuestion()"
 ></p-button>
-<!--
-{{ quizQueries | json }} -->
+
+<!-- {{ answers || "None" }} -->
+
+<!-- {{ selectedAns || "None" }} -->
+
+{{ quizQueries["selectedAnswer"] | json }}

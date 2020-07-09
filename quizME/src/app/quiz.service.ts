@@ -15,6 +15,12 @@ export class QuizService {
   private _url: string = "https://opentdb.com/api.php";
   constructor(private http: HttpClient) {}
 
+  private shuffleArray(array: string[] | number[]) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+  }
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
       // A client-side or network error occurred. Handle it accordingly.
@@ -35,7 +41,6 @@ export class QuizService {
    * @param optionsSelected Object of user selected values to be passed as query params to api
    */
   getQuizQuestions(optionsSelected) {
-
     //constructing query params object to pass to HttpParams
     let queryParams = {
       category: optionsSelected.category.code,
@@ -45,6 +50,7 @@ export class QuizService {
         else if (optionsSelected.difficulty === "medium") return "20";
         else return "30";
       })(),
+      encode: "base64",
     };
     let httpParam = new HttpParams({ fromObject: queryParams });
 
@@ -53,10 +59,20 @@ export class QuizService {
       .get<quizResponse>(this._url, { params: httpParam })
       .pipe(
         map((apiData: quizResponse) => {
-          return apiData.results.map((data) => {
+          return apiData.results.map((data, index) => {
             return {
+              questionID: index + 1,
               question: data.question,
-              options: data.incorrect_answers,
+              options: (function options(): string[] | number[] {
+                data.incorrect_answers.push(data.correct_answer);
+                let array = data.incorrect_answers;
+                for (let i = array.length - 1; i > 0; i--) {
+                  const j = Math.floor(Math.random() * (i + 1));
+                  [array[i], array[j]] = [array[j], array[i]];
+                }
+                return data.incorrect_answers;
+              })(),
+              answer: data.correct_answer,
             };
           });
         }),

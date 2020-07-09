@@ -11,7 +11,8 @@ import { quiz, QuizResolved } from "../models";
 export class QuizComponent implements OnInit {
   quizQueries: quiz[];
   val1: string;
-  questionId: number = 0;
+  questionNo: number = 0;
+
   constructor(
     private quizService: QuizService,
     private route: ActivatedRoute,
@@ -25,13 +26,16 @@ export class QuizComponent implements OnInit {
   ngOnInit() {}
 
   prevQuestion() {
-    this.questionId = this.questionId - 1 < 0 ? 0 : this.questionId - 1;
+    this.questionNo = this.questionNo - 1 < 0 ? 0 : this.questionNo - 1;
   }
 
   nextQuestion() {
-    this.questionId =
-      this.questionId + 1 > this.quizQueries.length - 1
+    this.questionNo =
+      this.questionNo + 1 > this.quizQueries.length - 1
         ? 0
-        : this.questionId + 1;
+        : this.questionNo + 1;
+
+    this.quizQueries[this.questionNo].selectedAnswer;
+    console.log(this.quizQueries);
   }
 }

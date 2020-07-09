@@ -9,8 +9,11 @@ export interface difficulty {
 }
 
 export interface quiz {
+  questionID: number;
   question: string;
   options: string[] | number[];
+  answer: string | boolean | number;
+  selectedAnswer?: string | boolean | number;
 }
 
 export interface QuizResolved {

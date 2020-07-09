@@ -7,9 +7,10 @@ import { AppComponent } from "./app.component";
 import { WelcomeComponent } from "./welcome/welcome.component";
 import { PrimengModule } from "./primeNG/primeng.module";
 import { QuizComponent } from "./quiz/quiz.component";
+import { SanitizeHtmlPipe } from './sanitize-html.pipe';
 
 @NgModule({
-  declarations: [AppComponent, WelcomeComponent, QuizComponent],
+  declarations: [AppComponent, WelcomeComponent, QuizComponent, SanitizeHtmlPipe],
   imports: [BrowserModule, AppRoutingModule, PrimengModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],
