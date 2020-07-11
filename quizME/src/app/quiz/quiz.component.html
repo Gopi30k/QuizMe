@@ -1,5 +1,33 @@
 <!-- <p-paginator [rows]="1" [totalRecords]="quizQueries.length"> </p-paginator> -->
 
+<p-button label="Submit" (click)="submitQuiz()"></p-button>
+<p-dialog
+  header="QuizME"
+  [modal]="true"
+  [(visible)]="submitConfirm"
+  [style]="{ width: '50vw' }"
+  [baseZIndex]="10000"
+>
+  {{ confirmationContent }}
+  <p-footer>
+    <button
+      type="button"
+      pButton
+      icon="pi pi-check"
+      (click)="onYes()"
+      label="Yes"
+    ></button>
+    <button
+      type="button"
+      pButton
+      icon="pi pi-times"
+      (click)="submitConfirm = false"
+      label="No"
+      class="ui-button-secondary"
+    ></button>
+  </p-footer>
+</p-dialog>
+
 <p-fieldset legend="Question-{{ questionNo + 1 }}">
   <div class="p-grid" style="margin-bottom: 10px;">
     <p>{{ quizQueries[questionNo].question | sanitizeHtml }}</p>
@@ -29,8 +57,10 @@
   (click)="nextQuestion()"
 ></p-button>
 
+<!-- <app-result
+  [finalScore]="score"
+  [quizAnsweredQueries]="quizQueries"
+></app-result> -->
 <!-- {{ answers || "None" }} -->
 
 <!-- {{ selectedAns || "None" }} -->
-
-{{ quizQueries["selectedAnswer"] | json }}

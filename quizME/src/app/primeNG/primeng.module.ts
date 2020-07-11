@@ -9,6 +9,10 @@ import { ButtonModule } from "primeng/button";
 import { PaginatorModule } from "primeng/paginator";
 import { FieldsetModule } from "primeng/fieldset";
 import { RadioButtonModule } from "primeng/radiobutton";
+import { ConfirmDialogModule } from "primeng/confirmdialog";
+import { DialogModule } from "primeng/dialog";
+import { ResultComponent } from "../result/result.component";
+import { DynamicDialogModule } from "primeng/dynamicdialog";
 
 export const primengComponents = [
   InputTextModule,
@@ -21,11 +25,15 @@ export const primengComponents = [
   PaginatorModule,
   FieldsetModule,
   RadioButtonModule,
+  ConfirmDialogModule,
+  DialogModule,
+  DynamicDialogModule,
 ];
 
 @NgModule({
   declarations: [],
   imports: [CommonModule],
   exports: [primengComponents],
+  entryComponents: [ResultComponent],
 })
 export class PrimengModule {}
