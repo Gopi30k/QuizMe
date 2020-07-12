@@ -1,27 +1,26 @@
-<h1>Your Score is : {{ finalScore }}</h1>
-<!-- {{ quizAnsweredQueries | json }} -->
-
 <p-virtualScroller
   [value]="quizAnsweredQueries"
   scrollHeight="450px"
-  [itemSize]="100"
   [rows]="10"
 >
   <p-header>
-    Quiz Results
+    <h2>Score - {{ finalScore }}/{{ quizAnsweredQueries.length }}</h2>
   </p-header>
   <ng-template let-quiz pTemplate="item" let-i="index">
     <div class="quiz">
+      <b>{{ quiz.questionID }}.) {{ quiz.question | sanitizeHtml }}</b>
       <div>
-        <b>{{ i + 1 }}.) {{ quiz.question | sanitizeHtml }}</b>
-        <div>
-          <b>Correct Answer : </b>
-          <span>{{ quiz.answer }}</span>
-        </div>
-        <div>
-          <b>Your Answer : </b>
-          <span>{{ quiz.selectedAnswer || "NOT ANSWERED" }}</span>
-        </div>
+        <b style="color: #107d11;">Correct Answer : </b>
+        <span>{{ quiz.answer }}</span>
+      </div>
+      <div>
+        <b
+          [ngStyle]="{
+            color: quiz.selectedAnswer === quiz.answer ? '#107d11' : '#c01120'
+          }"
+          >Your Answer :
+        </b>
+        <span>{{ quiz.selectedAnswer || "NOT ANSWERED" }}</span>
       </div>
     </div>
   </ng-template>

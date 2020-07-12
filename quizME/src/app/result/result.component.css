@@ -1,0 +1,10 @@
+h2 {
+  text-align: center;
+  color: #2a9d8f;
+}
+
+.quiz {
+  margin: auto 0;
+  padding: 10px;
+  line-height: 1.5rem;
+}

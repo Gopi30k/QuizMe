@@ -4,3 +4,12 @@
 * {
   font-family: "Open Sans", sans-serif;
 }
+
+html {
+  min-height: 100vh;
+  background: #f1f3f6;
+}
+
+body {
+  overflow-y: hidden;
+}

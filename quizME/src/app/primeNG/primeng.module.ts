@@ -14,7 +14,7 @@ import { DialogModule } from "primeng/dialog";
 import { ResultComponent } from "../result/result.component";
 import { DynamicDialogModule } from "primeng/dynamicdialog";
 import { VirtualScrollerModule } from "primeng/virtualscroller";
-
+import { CardModule } from "primeng/card";
 export const primengComponents = [
   InputTextModule,
   DropdownModule,
@@ -30,6 +30,7 @@ export const primengComponents = [
   DialogModule,
   DynamicDialogModule,
   VirtualScrollerModule,
+  CardModule,
 ];
 
 @NgModule({

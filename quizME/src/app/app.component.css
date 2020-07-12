@@ -1,0 +1,32 @@
+/* .quiz-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  box-shadow: 10px 19px 38px 10px rgba(0, 0, 0, 0.3);
+  border-radius: 6px;
+  width: 75%;
+  margin: auto;
+  height: 95vh;
+} */
+
+:host >>> .ui-card {
+  background: #f1f3f6;
+  box-shadow: 10px 19px 38px 10px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  height: 95vh;
+  min-width: 75%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  margin: auto;
+}
+
+h3 {
+  margin-top: 20px;
+  color: #2a9d8f;
+  text-align: center;
+}
