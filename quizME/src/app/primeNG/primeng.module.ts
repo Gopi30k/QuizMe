@@ -13,6 +13,7 @@ import { ConfirmDialogModule } from "primeng/confirmdialog";
 import { DialogModule } from "primeng/dialog";
 import { ResultComponent } from "../result/result.component";
 import { DynamicDialogModule } from "primeng/dynamicdialog";
+import { VirtualScrollerModule } from "primeng/virtualscroller";
 
 export const primengComponents = [
   InputTextModule,
@@ -28,6 +29,7 @@ export const primengComponents = [
   ConfirmDialogModule,
   DialogModule,
   DynamicDialogModule,
+  VirtualScrollerModule,
 ];
 
 @NgModule({

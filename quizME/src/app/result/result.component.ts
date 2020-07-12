@@ -8,15 +8,26 @@ import { ActivatedRoute } from "@angular/router";
   styleUrls: ["./result.component.css"],
 })
 export class ResultComponent implements OnInit {
-  finalScore: number;
+  finalScore: number = 0;
   quizAnsweredQueries: quiz[];
 
   constructor(private route: ActivatedRoute) {
-    this.route.data.subscribe((data: QuizResolved) => {
-      this.quizAnsweredQueries = data["quizQueries"].Quiz;
+    this.quizAnsweredQueries = JSON.parse(
+      sessionStorage.getItem("quizResults")
+    );
+
+    this.quizAnsweredQueries.forEach((quiz) => {
+      if (quiz.selectedAnswer) {
+        quiz.selectedAnswer.toString().toLowerCase() ===
+        quiz.answer.toString().toLowerCase()
+          ? this.finalScore++
+          : this.finalScore;
+      }
     });
-    // console.log(this.quizAnsweredQueries);
   }
 
   ngOnInit() {}
+  ngOnDestroy(): void {
+    sessionStorage.removeItem("quizResults");
+  }
 }

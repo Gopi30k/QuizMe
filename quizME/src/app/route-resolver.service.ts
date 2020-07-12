@@ -4,10 +4,10 @@ import {
   ActivatedRouteSnapshot,
   RouterStateSnapshot,
 } from "@angular/router";
-import { Observable, of } from "rxjs";
+import { Observable, of, BehaviorSubject } from "rxjs";
 import { quiz, QuizResolved } from "./models";
 import { QuizService } from "./quiz.service";
-import { map, catchError } from "rxjs/operators";
+import { map, catchError, tap } from "rxjs/operators";
 
 @Injectable({
   providedIn: "root",
@@ -25,7 +25,7 @@ export class RouteResolverService implements Resolve<QuizResolved> {
       catchError((error) => {
         return of({
           Quiz: null,
-          error: `Oops !!! Error please in resolver ${error}`,
+          error: `Oops !!! Error in resolver ${error}`,
         });
       })
     );

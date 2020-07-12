@@ -54,7 +54,6 @@ export class QuizService {
     };
     let httpParam = new HttpParams({ fromObject: queryParams });
 
-    //modify the api response as quiz(interface) strcutured array and return
     return this.http
       .get<quizResponse>(this._url, { params: httpParam })
       .pipe(
@@ -72,7 +71,7 @@ export class QuizService {
                 }
                 return data.incorrect_answers;
               })(),
-              answer: data.correct_answer,
+              answer: atob(data.correct_answer),
             };
           });
         }),

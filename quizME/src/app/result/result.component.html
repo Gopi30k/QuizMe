@@ -1,2 +1,28 @@
 <h1>Your Score is : {{ finalScore }}</h1>
-{{ quizAnsweredQueries | json }}
+<!-- {{ quizAnsweredQueries | json }} -->
+
+<p-virtualScroller
+  [value]="quizAnsweredQueries"
+  scrollHeight="450px"
+  [itemSize]="100"
+  [rows]="10"
+>
+  <p-header>
+    Quiz Results
+  </p-header>
+  <ng-template let-quiz pTemplate="item" let-i="index">
+    <div class="quiz">
+      <div>
+        <b>{{ i + 1 }}.) {{ quiz.question | sanitizeHtml }}</b>
+        <div>
+          <b>Correct Answer : </b>
+          <span>{{ quiz.answer }}</span>
+        </div>
+        <div>
+          <b>Your Answer : </b>
+          <span>{{ quiz.selectedAnswer || "NOT ANSWERED" }}</span>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</p-virtualScroller>

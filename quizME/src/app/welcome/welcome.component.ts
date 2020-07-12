@@ -63,4 +63,10 @@ export class WelcomeComponent implements OnInit {
     sessionStorage.setItem("userSelection", JSON.stringify(value));
     this.router.navigate(["/question"]);
   }
+
+  ngOnDestroy(): void {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
+    sessionStorage.removeItem("userSelection");
+  }
 }

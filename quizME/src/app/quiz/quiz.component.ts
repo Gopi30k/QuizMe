@@ -92,6 +92,7 @@ export class QuizComponent implements OnInit {
   }
 
   onYes() {
+    sessionStorage.setItem("quizResults", JSON.stringify(this.quizQueries));
     this.router.navigate(["/results"]);
   }
 }
